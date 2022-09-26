@@ -74,9 +74,6 @@ if(isset($_POST['edit'])){
 <div class="card shadow  w-50 mx-auto">
     <div class="container m-5 mx-auto">
 <form method="POST" action="viewgabungan.php">
-
-
-
     <div class="text-center">
         <div class="form-group text-start w-50 d-inline-block">
             <label class="fw-bold p-2">Nama</label>
