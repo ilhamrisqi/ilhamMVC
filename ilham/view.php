@@ -1,13 +1,20 @@
 <?php
 require_once("controller.php");
-if(isset($_POST['create'])){
+if(isset($_POST['submit'])){
     insert();
 }
 
 if(isset($_GET['delete'])){
     delete($_GET['delete']);
 }
+
+if(isset($_POST['edit'])){
+    editkaryawan($_POST['edit']);
+}
 ?>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -51,6 +58,7 @@ if(isset($_GET['delete'])){
         <th scope="col">Jabatan</th>
         <th scope="col">Usia</th>
         <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
         <tbody>
@@ -63,6 +71,7 @@ if(isset($_GET['delete'])){
         <td>".$user->jabatan."</td>
         <td>".$user->usia."</td>
         <td><a href='view.php?delete=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
+        <td><a href='view.php?edit=".$index."'><button class='btn btn-primary'>Edit</button></a></td>
         </tr>
         ";
         }
@@ -76,18 +85,18 @@ if(isset($_GET['delete'])){
     <form class="row g-3 mx-5" action="view.php" method="POST" enctype="multipart/form-data">
         <div class="col-md-12">
             <label for="nama" class="form-label">Nama</label>
-            <input type="text" name="nama" class="form-control" id="nama">
+            <input type="text" name="nama" class="form-control" id="nama" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUser'][$_GET['edit']]->nama : ''?>">
         </div>
         <div class="col-md-12">
             <label for="jabatan" class="form-label">Jabatan</label>
-            <input type="text" name="jabatan" class="form-control" id="jabatan">
+            <input type="text" name="jabatan" class="form-control" id="jabatan" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUser'][$_GET['edit']]->jabatan : ''?>">
         </div>
         <div class="col-md-12">
             <label for="Usia" class="form-label">Usia</label>
-            <input type="text" name="usia" class="form-control" id="usia">
+            <input type="text" name="usia" class="form-control" id="usia" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUser'][$_GET['edit']]->usia : ''?>">
         </div>
         <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary" name="create">Create</button>
+            <button type="submit" class="btn btn-primary" name="<?php echo isset($_GET['edit']) ? 'edit' : 'submit'?>" value="<?php echo isset($_GET['edit']) ?  $_GET['edit']   : ''?>">Sumbit</button>
         </div>
     </form>
 </div>

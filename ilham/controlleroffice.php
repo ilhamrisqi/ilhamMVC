@@ -26,6 +26,15 @@ function deleteemployee($id){
     unset($_SESSION['listUserEmployee'][$id]);
 }
 
+function editOffice($id){
+    $user = new useremployee();
+    $user->name = $_POST['name'];
+    $user->alamat = $_POST['alamat'];
+    $user->kota = $_POST['kota'];
+    $user->phone = $_POST['phone'];
+    $_SESSION['listUserEmployee'][$id]= $user;
+}
+
 // function getEmployee($id){
 //     return index()[$id];
 // }

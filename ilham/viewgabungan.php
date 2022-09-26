@@ -8,6 +8,10 @@ if (isset($_GET['deletegabungan'])) {
     deletegabungan($_GET['deletegabungan']);
 }
 
+if(isset($_POST['edit'])){
+    editgabungan($_POST['edit']);
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,12 +58,15 @@ if (isset($_GET['deletegabungan'])) {
     <?php
 
     foreach (indexgabungan() as $index => $gabungan) {
+        $idkar = $gabungan->karyawan;
+        $idoff = $gabungan->office;
         echo "
                 <tr>
                 <td>".index()[$gabungan->karyawan]->nama."</td>
                 <td>".indexemployee()[$gabungan->office]->name."</td>
-                
                 <td><a href='viewgabungan.php?deletegabungan=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
+                <td><a href='viewgabungan.php?edit=<?= $index ?>&editKaryawan=<?= $idkar ?>&editIdOffice=<?= $idoff ?>'><button class='btn btn-warning'>Edit</button></a></td>
+                
                 </tr>
                 ";
     }
@@ -69,6 +76,19 @@ if (isset($_GET['deletegabungan'])) {
 <div class="card shadow  w-50 mx-auto">
     <div class="container m-5 mx-auto">
 <form method="POST" action="viewgabungan.php">
+
+    <?php
+    if (isset($_GET['edit'] )) {
+        $idkaryawan = getid($_GET['edit'])->karyawan;
+        $idoffice = getid($_GET['edit'])->office;
+        var_dump($idkaryawan);
+        var_dump($idoffice);
+    }
+
+
+    ?>
+
+
     <div class="text-center">
         <div class="form-group text-start w-50 d-inline-block">
             <label class="fw-bold p-2">Nama</label>

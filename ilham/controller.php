@@ -26,7 +26,13 @@ function delete($id){
     unset($_SESSION['listUser'][$id]);
 }
 
-// function getUser($id){
-//     return index()[$id];
-// }
+
+function editkaryawan($id){
+    $user = new user();
+    $user->nama = $_POST['nama'];
+    $user->jabatan = $_POST['jabatan'];
+    $user->usia = $_POST['usia'];
+    $_SESSION['listUser'][$id]= $user;
+}
+
 ?>

@@ -10,6 +10,10 @@ if(isset($_GET['deleteemployee'])){
 // if(isset($_GET['insertemployee'])){
 //     insertemployee();
 // }
+
+if(isset($_POST['edit'])){
+    editOffice($_POST['edit']);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -55,6 +59,7 @@ if(isset($_GET['deleteemployee'])){
             <th scope="col">City</th>
             <th scope="col">Phone</th>
             <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -68,6 +73,7 @@ if(isset($_GET['deleteemployee'])){
         <td>".$user->kota."</td>
         <td>".$user->phone."</td>
         <td><a href='viewoffice.php?deleteemployee=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
+        <td><a href='viewoffice.php?edit=".$index."'><button class='btn btn-primary'>Edit</button></a></td>
         </tr>
         ";
         }
@@ -83,23 +89,23 @@ if(isset($_GET['deleteemployee'])){
         <form class="row g-3 mx-5" action="viewoffice.php" method="POST" enctype="multipart/form-data">
             <div class="col-md-12">
                 <label for="name" class="form-label">Name Office</label>
-                <input type="text" name="name" class="form-control" id="name">
+                <input type="text" name="name" class="form-control" id="name" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUserEmployee'][$_GET['edit']]->name : ''?>">
             </div>
             <div class="col-md-12">
                 <label for="office" class="form-label">Address</label>
-                <input type="text" name="alamat" class="form-control" id="alamat">
+                <input type="text" name="alamat" class="form-control" id="alamat" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUserEmployee'][$_GET['edit']]->alamat : ''?>">
             </div>
             <div class="col-md-12">
                 <label for="office" class="form-label">City</label>
-                <input type="text" name="kota" class="form-control" id="kota">
+                <input type="text" name="kota" class="form-control" id="kota" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUserEmployee'][$_GET['edit']]->kota : ''?>">
             </div>
             <div class="col-md-12">
                 <label for="office" class="form-label">Phone</label>
-                <input type="text" name="phone" class="form-control" id="phone">
+                <input type="text" name="phone" class="form-control" id="phone" value="<?php echo isset($_GET['edit']) ? $_SESSION['listUserEmployee'][$_GET['edit']]->phone : ''?>">
             </div>
             
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary" name="submit">Create</button>
+                <button type="submit" class="btn btn-primary" name="<?php echo isset($_GET['edit']) ? 'edit' : 'submit'?>" value="<?php echo isset($_GET['edit']) ?  $_GET['edit']   : ''?>">Create</button>
             </div>
         </form>
     </div>

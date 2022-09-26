@@ -31,4 +31,15 @@ function deletegabungan($id){
     unset($_SESSION['DataOfficeKaryawan'][$id]);
 }
 
+function editgabungan($id){
+    $user = new officekaryawan();
+    $user->karyawan = $_POST['nama'];
+    $user->office = $_POST['name'];
+    $_SESSION['DataOfficeKaryawan'][$id]= $user;
+}
+
+function getid($id){
+    return index()[$id];
+}
+
 ?>
