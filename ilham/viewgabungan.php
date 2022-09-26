@@ -51,7 +51,8 @@ if(isset($_POST['edit'])){
     <tr>
         <th scope="col">Employee</th>
         <th scope="col">Office</th>
-        <th scope="col">Office</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
