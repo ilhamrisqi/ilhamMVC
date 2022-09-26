@@ -58,15 +58,13 @@ if(isset($_POST['edit'])){
     <?php
 
     foreach (indexgabungan() as $index => $gabungan) {
-        $idkar = $gabungan->karyawan;
-        $idoff = $gabungan->office;
+
         echo "
                 <tr>
                 <td>".index()[$gabungan->karyawan]->nama."</td>
                 <td>".indexemployee()[$gabungan->office]->name."</td>
                 <td><a href='viewgabungan.php?deletegabungan=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
-                <td><a href='viewgabungan.php?edit=<?= $index ?>&editKaryawan=<?= $idkar ?>&editIdOffice=<?= $idoff ?>'><button class='btn btn-warning'>Edit</button></a></td>
-                
+                <td><a href='viewgabungan.php?edit=".$index."'><button class='btn btn-primary'>Edit</button></a></td>
                 </tr>
                 ";
     }
@@ -77,23 +75,12 @@ if(isset($_POST['edit'])){
     <div class="container m-5 mx-auto">
 <form method="POST" action="viewgabungan.php">
 
-    <?php
-    if (isset($_GET['edit'] )) {
-        $idkaryawan = getid($_GET['edit'])->karyawan;
-        $idoffice = getid($_GET['edit'])->office;
-        var_dump($idkaryawan);
-        var_dump($idoffice);
-    }
-
-
-    ?>
 
 
     <div class="text-center">
         <div class="form-group text-start w-50 d-inline-block">
             <label class="fw-bold p-2">Nama</label>
             <select id="nama" name="nama" class="form-select">
-                <option value="">Pilih Nama karyawan</option>
                 <?php foreach (index() as $indexkaryawan => $karyawan) : ?>
                     <option value="<?= $indexkaryawan ?>" name='nama'><?= $karyawan->nama ?></option>"
                 <?php endforeach; ?>
@@ -102,7 +89,6 @@ if(isset($_POST['edit'])){
         <div class="form-group text-start w-50 d-inline-block">
             <label class="fw-bold p-2">Nama Office</label>
             <select id="name" name="name" class="form-select">
-                <option value="">Pilih Nama Office</option>
                 <?php foreach (indexemployee() as $indexemployee => $employee) : ?>
                     <option value="<?= $indexemployee ?>" name='name'><?= $employee->name ?></option>
                 <?php endforeach; ?>
@@ -110,7 +96,7 @@ if(isset($_POST['edit'])){
         </div>
     </div>
 
-    <button name="submitgabungan" type="submit" class="btn d-block mx-auto mt-2 btn-dark">Submit</button>
+    <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'submitgabungan'?>" value="<?php echo isset($_GET['edit']) ?  $_GET['edit']   : ''?>" type="submit" class="btn d-block mx-auto mt-2 btn-dark">Submit</button>
 </form>
     </div>
 </div>

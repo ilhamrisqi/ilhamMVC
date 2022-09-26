@@ -32,14 +32,11 @@ function deletegabungan($id){
 }
 
 function editgabungan($id){
-    $user = new officekaryawan();
-    $user->karyawan = $_POST['nama'];
-    $user->office = $_POST['name'];
-    $_SESSION['DataOfficeKaryawan'][$id]= $user;
+    $tes = new officekaryawan();
+    $tes->karyawan = $_POST['nama'];
+    $tes->office = $_POST['name'];
+    $_SESSION['DataOfficeKaryawan'][$id]= $tes;
 }
 
-function getid($id){
-    return index()[$id];
-}
 
 ?>
